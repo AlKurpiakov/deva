@@ -1,0 +1,32 @@
+# HUSH environment for a Linux cluster with SLURM and `module load cuda`.
+#
+#   conda env create -f environment.yml
+#
+# PyTorch is built for CUDA 12.6 (cu126). Its major CUDA version must match
+# the nvcc from `module load cuda`, which builds the MultiScaleDeformableAttention
+# op. With a CUDA 13 module, or for Blackwell GPUs (B200, RTX 50xx), replace
+# cu126 with cu130 (or cu128) in the three lines of the pip section.
+# Details: INSTALL.md.
+name: hush
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.11
+  - pip
+  - setuptools
+  # Host compiler and build tool for the CUDA op (nvcc comes from the cuda
+  # module). gcc 11 is supported by every CUDA 12.x and 13.x nvcc.
+  - gcc_linux-64=11
+  - gxx_linux-64=11
+  - ninja
+  - numpy=2.2
+  - einops=0.8.1
+  - tqdm=4.67.1
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu126
+      - torch==2.9.1+cu126
+      - torchvision==0.24.1+cu126
+      - timm==0.6.12
+      - torch-harmonics==0.6.5
+      - opencv-python-headless==4.11.0.86

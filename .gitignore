@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Build artifacts of the MultiScaleDeformableAttention extension
+models/ops/build/
+models/ops/.build.lock
+*.so
+
+# Checkpoints and SLURM logs
+checkpoints/
+*.pth
+hush-*.out

@@ -1,0 +1,5 @@
+# Scripts run on the Linux cluster must keep LF endings, otherwise bash fails
+# with "$'\r': command not found" after a checkout or copy from Windows.
+*.sh     text eol=lf
+*.sbatch text eol=lf
+*.yml    text eol=lf
